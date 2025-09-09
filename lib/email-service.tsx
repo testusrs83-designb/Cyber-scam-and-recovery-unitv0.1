@@ -11,19 +11,31 @@ class EmailService {
   private transporter: nodemailer.Transporter
 
   constructor() {
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.warn("[v0] SMTP configuration incomplete. Email functionality may not work.")
+    }
+
     this.transporter = nodemailer.createTransporter({
       host: process.env.SMTP_HOST,
       port: Number.parseInt(process.env.SMTP_PORT || "587"),
-      secure: false, // true for 465, false for other ports
+      secure: process.env.SMTP_PORT === "465", // true for 465, false for other ports
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
+      connectionTimeout: 10000,
+      greetingTimeout: 5000,
+      socketTimeout: 10000,
     })
   }
 
   async sendEmail({ to, subject, html, text }: EmailOptions) {
     try {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(to)) {
+        throw new Error("Invalid email address")
+      }
+
       const info = await this.transporter.sendMail({
         from: process.env.SMTP_FROM || process.env.EMAIL_FROM,
         to,
@@ -45,6 +57,7 @@ class EmailService {
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #1e3a8a 0%, #059669 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+          <img src="https://i.ibb.co/DPqX17SX/Adobe-Express-file-1.png" alt="Fortivault Logo" style="max-height: 60px; margin-bottom: 10px;">
           <h1 style="color: white; margin: 0; font-size: 24px;">Email Verification Required</h1>
         </div>
         
@@ -72,6 +85,7 @@ class EmailService {
         
         <div style="text-align: center; padding: 20px; color: #64748b; font-size: 12px;">
           <p>Fortivault | Built to protect. Trusted to Secure</p>
+          <p>Contact: fortivault@aol.com | +14582983729</p>
         </div>
       </div>
     `
@@ -84,6 +98,7 @@ class EmailService {
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #1e3a8a 0%, #059669 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+          <img src="https://i.ibb.co/DPqX17SX/Adobe-Express-file-1.png" alt="Fortivault Logo" style="max-height: 60px; margin-bottom: 10px;">
           <h1 style="color: white; margin: 0; font-size: 24px;">Welcome to Your Recovery Journey</h1>
         </div>
         
@@ -124,7 +139,7 @@ class EmailService {
         
         <div style="text-align: center; padding: 20px; color: #64748b; font-size: 12px;">
           <p>Fortivault | Built to protect. Trusted to Secure | 24/7 Support Available</p>
-          <p>Need help? Reply to this email or contact fortivault@aol.com</p>
+          <p>Need help? Reply to this email or contact fortivault@aol.com | +14582983729</p>
         </div>
       </div>
     `

@@ -30,18 +30,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check for existing session
     const savedUser = localStorage.getItem("user")
     if (savedUser) {
-      setUser(JSON.parse(savedUser))
+      try {
+        setUser(JSON.parse(savedUser))
+      } catch (error) {
+        console.error("[v0] Error parsing saved user:", error)
+        localStorage.removeItem("user")
+      }
     }
     setIsLoading(false)
   }, [])
 
   const login = async (email: string, password: string) => {
+    if (!email || !password) {
+      throw new Error("Email and password are required")
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      throw new Error("Invalid email format")
+    }
+
     // Mock authentication - in real app, this would call your API
     const mockUser: User = {
-      id: "1",
+      id: Date.now().toString(),
       email,
-      firstName: "John",
-      lastName: "Doe",
+      firstName: email.split("@")[0].split(".")[0] || "User",
+      lastName: email.split("@")[0].split(".")[1] || "Account",
       role: email.includes("reviewer") ? "reviewer" : "user",
     }
 
@@ -57,29 +71,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signup = async (userData: any) => {
-    // Mock signup - in real app, this would call your API
+    if (!userData.email || !userData.password || !userData.firstName || !userData.lastName) {
+      throw new Error("All fields are required")
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(userData.email)) {
+      throw new Error("Invalid email format")
+    }
+
+    if (userData.password.length < 8) {
+      throw new Error("Password must be at least 8 characters long")
+    }
+
     const newUser: User = {
       id: Date.now().toString(),
       email: userData.email,
       firstName: userData.firstName,
       lastName: userData.lastName,
-      role: userData.role,
+      role: "user", // Force user role for fraud victims only
     }
 
     setUser(newUser)
     localStorage.setItem("user", JSON.stringify(newUser))
-
-    // Redirect based on role
-    if (newUser.role === "reviewer") {
-      router.push("/reviewer")
-    } else {
-      router.push("/dashboard")
-    }
+    router.push("/dashboard")
   }
 
   const logout = () => {
     setUser(null)
     localStorage.removeItem("user")
+    localStorage.removeItem("activeCaseId")
     router.push("/")
   }
 

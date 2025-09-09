@@ -1,6 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { emailService } from "@/lib/email-service"
 
+const otpStore = new Map<string, { otp: string; expires: number; attempts: number }>()
+
 export async function POST(request: NextRequest) {
   try {
     const { email, otp, caseId } = await request.json()
@@ -9,11 +11,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Email, OTP, and case ID are required" }, { status: 400 })
     }
 
-    // Verify OTP (implement your verification logic here)
-    // For demo purposes, we'll accept any 6-digit code
-    if (otp.length !== 6) {
-      return NextResponse.json({ error: "Invalid OTP format" }, { status: 400 })
+    const key = `${email}-${caseId}`
+    const storedData = otpStore.get(key)
+
+    if (!storedData) {
+      return NextResponse.json({ error: "OTP not found or expired" }, { status: 400 })
     }
+
+    if (Date.now() > storedData.expires) {
+      otpStore.delete(key)
+      return NextResponse.json({ error: "OTP has expired" }, { status: 400 })
+    }
+
+    if (storedData.otp !== otp) {
+      return NextResponse.json({ error: "Invalid OTP" }, { status: 400 })
+    }
+
+    otpStore.delete(key)
 
     // Generate unique dashboard access link
     const dashboardToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
