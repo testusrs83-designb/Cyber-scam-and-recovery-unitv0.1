@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "fortivault",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -41,7 +41,6 @@
     "@remix-run/react": "latest",
     "@sveltejs/kit": "latest",
     "@vercel/analytics": "latest",
-    "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
@@ -72,6 +71,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.9",
     "@types/node": "^22",
+    "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8.5",
