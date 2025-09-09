@@ -41,7 +41,7 @@ class EmailService {
   }
 
   async sendOTP(email: string, otp: string, caseId: string) {
-    const subject = "Verify Your Email - Cyber Scam Recovery Unit"
+    const subject = "Verify Your Email - Fortivault"
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #1e3a8a 0%, #059669 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
@@ -71,7 +71,7 @@ class EmailService {
         </div>
         
         <div style="text-align: center; padding: 20px; color: #64748b; font-size: 12px;">
-          <p>Cyber Scam & Recovery Unit | Protecting Your Digital Assets</p>
+          <p>Fortivault | Built to protect. Trusted to Secure</p>
         </div>
       </div>
     `
@@ -80,7 +80,7 @@ class EmailService {
   }
 
   async sendWelcomeEmail(email: string, caseId: string, dashboardLink: string) {
-    const subject = "Welcome to Cyber Scam Recovery - Your Dashboard is Ready"
+    const subject = "Welcome to Fortivault - Your Dashboard is Ready"
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #1e3a8a 0%, #059669 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
@@ -123,8 +123,8 @@ class EmailService {
         </div>
         
         <div style="text-align: center; padding: 20px; color: #64748b; font-size: 12px;">
-          <p>Cyber Scam & Recovery Unit | 24/7 Support Available</p>
-          <p>Need help? Reply to this email or contact support@cyberscamunit.com</p>
+          <p>Fortivault | Built to protect. Trusted to Secure | 24/7 Support Available</p>
+          <p>Need help? Reply to this email or contact fortivault@aol.com</p>
         </div>
       </div>
     `

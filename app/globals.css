@@ -16,7 +16,7 @@
   --secondary-foreground: oklch(0.98 0.005 210);
   --muted: oklch(0.92 0.02 150); /* Light green tint */
   --muted-foreground: oklch(0.45 0.02 220);
-  --accent: oklch(0.65 0.15 160); /* Emerald green */
+  --accent: oklch(0.45 0.18 160); /* Darker emerald green for better contrast */
   --accent-foreground: oklch(0.98 0.005 210);
   --destructive: oklch(0.55 0.22 25); /* Red for warnings */
   --destructive-foreground: oklch(0.98 0.005 210);

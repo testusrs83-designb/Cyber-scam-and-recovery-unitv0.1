@@ -16,12 +16,12 @@ export function HeroSection() {
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 text-primary text-sm font-medium mb-6">
               <Shield className="w-4 h-4 mr-2" />
-              Trusted by fraud victims worldwide
+              Built to protect. Trusted to Secure
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-balance mb-6">
-              Report scams. <span className="text-accent">Recover funds.</span> Protect your money.
+              Report scams. <span className="text-primary">Recover funds.</span> Protect your money.
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground text-pretty max-w-3xl mx-auto">
               We support victims of crypto and fiat fraud with secure reporting and recovery guidance.
@@ -55,15 +55,15 @@ export function HeroSection() {
             className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
           >
             <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">$2.4M+</div>
+              <div className="text-3xl font-bold text-primary">$2.4M+</div>
               <div className="text-sm text-muted-foreground">Funds Recovered</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">1,200+</div>
+              <div className="text-3xl font-bold text-primary">1,200+</div>
               <div className="text-sm text-muted-foreground">Cases Resolved</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">24/7</div>
+              <div className="text-3xl font-bold text-primary">24/7</div>
               <div className="text-sm text-muted-foreground">Expert Support</div>
             </div>
           </motion.div>

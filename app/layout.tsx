@@ -9,9 +9,9 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Cyber Scam & Recovery Unit - Report Scams, Recover Funds",
+  title: "Fortivault - Built to protect. Trusted to Secure",
   description:
-    "Professional fraud recovery and scam reporting platform. We support victims of crypto and fiat fraud with secure reporting and recovery guidance.",
+    "Built to protect. Trusted to Secure. Professional fraud recovery and scam reporting platform. We support victims of crypto and fiat fraud with secure reporting and recovery guidance.",
   generator: "v0.app",
 }
 

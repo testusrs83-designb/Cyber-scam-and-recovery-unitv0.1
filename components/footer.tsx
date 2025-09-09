@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Shield, Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   const footerSections = [
@@ -48,21 +48,25 @@ export function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4">
-              <Shield className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold text-primary">Cyber Scam & Recovery Unit</span>
+              <img
+                src="https://i.ibb.co/DPqX17SX/Adobe-Express-file-1.png"
+                alt="Fortivault Logo"
+                className="h-8 w-8 object-contain"
+              />
+              <span className="text-xl font-bold text-primary">Fortivault</span>
             </Link>
             <p className="text-muted-foreground mb-6 text-pretty">
-              Professional fraud recovery services helping victims reclaim their funds and protect their financial
-              future.
+              Built to protect. Trusted to Secure. Professional fraud recovery services helping victims reclaim their
+              funds and protect their financial future.
             </p>
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+14582983729</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>help@csru.com</span>
+                <span>fortivault@aol.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
@@ -92,7 +96,7 @@ export function Footer() {
         </div>
 
         <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">© 2024 Cyber Scam & Recovery Unit. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2024 Fortivault. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Terms
